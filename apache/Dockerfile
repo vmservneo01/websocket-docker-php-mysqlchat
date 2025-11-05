@@ -41,7 +41,7 @@ RUN mkdir -p /tmpdir \
 #Помимо копирования виртуального хоста, скопируем еще .conf supervisor
 COPY vhosts /tmpdir 
 COPY ./supervisor/websocket.conf /etc/supervisor/conf.d
-
+COPY ./vhosts/websockchat.ru.conf /etc/apache2/sites-enabled/$TMP_SITE.conf
 
 RUN   mv /tmpdir/ports.conf /etc/apache2/ && \
       mv /tmpdir/dir.conf /etc/apache2/mods-available/ && \
@@ -49,20 +49,23 @@ RUN   mv /tmpdir/ports.conf /etc/apache2/ && \
       mv /tmpdir/remoteip.conf /etc/apache2/mods-available/ && \
       rm -rf /tmpdir
 
-RUN cat <<EOF > /etc/apache2/sites-enabled/$TMP_SITE.conf
-<VirtualHost *:9000>
-    Define root_domain ${TMP_SITE}
-    Define root_path /var/www/${TMP_SITE}
-
-    ServerName \${root_domain}
-    ServerAlias www.\${root_domain}
-    DocumentRoot \${root_path}/www
-
-    ErrorLog     \${root_path}/log/apache/error_log
-    TransferLog  \${root_path}/log/apache/access_log
-
-</VirtualHost>
-EOF
+######
+#####  на разворачивании в yandexcloud не работает RUN cat поэтому просто добавим туда файл 
+####
+#RUN cat <<EOF > /etc/apache2/sites-enabled/$TMP_SITE.conf
+#<VirtualHost *:9000>
+#    Define root_domain ${TMP_SITE}
+#    Define root_path /var/www/${TMP_SITE}
+#
+#    ServerName \${root_domain}
+#    ServerAlias www.\${root_domain}
+#    DocumentRoot \${root_path}/www
+#
+#    ErrorLog     \${root_path}/log/apache/error_log
+#    TransferLog  \${root_path}/log/apache/access_log
+#
+#</VirtualHost>
+#EOF
 
 # Активируем сайт(у меня не работает эта строка)
 #RUN a2ensite websockchat.ru.conf 
