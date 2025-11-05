@@ -17,7 +17,7 @@ services:
     apache:
         volumes:
             - ./logs/apache:/var/www/${TMP_SITE}/log/apache
-#            - ./www:/var/www/${TMP_SITE}/www
+#            - ./apache/www:/var/www/${TMP_SITE}/www
         build:
            context: apache
            dockerfile: Dockerfile
@@ -32,7 +32,7 @@ services:
             - 80:80
         volumes:
             - ./logs/nginx/:/var/www/${TMP_SITE}/log/nginx
-            - ./www/vendor-front/:/var/www/${TMP_SITE}/www/vendor-front
+            - ./nginx/static-content/vendor-front/:/var/www/${TMP_SITE}/www/vendor-front
         networks:
           - php-net
         depends_on:
