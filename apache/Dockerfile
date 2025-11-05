@@ -41,7 +41,7 @@ RUN mkdir -p /tmpdir \
 #Помимо копирования виртуального хоста, скопируем еще .conf supervisor
 COPY vhosts /tmpdir 
 COPY ./supervisor/websocket.conf /etc/supervisor/conf.d
-COPY ./vhosts/websockchat.ru.conf /etc/apache2/sites-enabled/$TMP_SITE.conf
+COPY ./vhosts/websockchat.ru.conf /etc/apache2/sites-enabled/
 
 RUN   mv /tmpdir/ports.conf /etc/apache2/ && \
       mv /tmpdir/dir.conf /etc/apache2/mods-available/ && \

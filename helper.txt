@@ -9,4 +9,4 @@ curl http://127.0.0.1:80
 #apache
 docker build -t websockchat/webapp:v1 .
 docker run --name apache --add-host websockchat.ru:172.17.0.2 -d -p 80:9000 websockchat/webapp:v1
-
+source /etc/apache2/envvars && apache2  ###  для отслеживания ошибок внутри контейнера
