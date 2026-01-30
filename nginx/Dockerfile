@@ -28,5 +28,5 @@ RUN /create-ssl-cert.sh websockchat.ru 365
 #CMD ["/create-ssl-cert.sh","websockchat.ru","365"]
 CMD ["nginx"]
 
-EXPOSE 80
+#EXPOSE 80
 EXPOSE 443

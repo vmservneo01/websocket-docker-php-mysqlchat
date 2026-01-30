@@ -1,18 +1,18 @@
 version: '3.9'
 
 services:
-#    mysql:
-#        volumes:
-#            - "./.data/db:/var/lib/mysql"             #for regular download
-#            - $PWD/dump_db:/docker-entrypoint-initdb.d   #for dump bd
-#        image: mysql
-#        environment:
-#            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-#            MYSQL_DATABASE: ${MYSQL_DATABASE}
-##            MYSQL_USER: ${MYSQL_USER}
-##            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-#        networks:
-#           - php-net
+    mysql:
+        volumes:
+            - "./.data/db:/var/lib/mysql"             #for regular download
+            - $PWD/dump_db:/docker-entrypoint-initdb.d   #for dump bd
+        image: mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+#            MYSQL_USER: ${MYSQL_USER}
+#            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        networks:
+           - php-net
 
     apache:
         volumes:
@@ -56,3 +56,7 @@ services:
 networks:
  php-net:
      driver: bridge
+
+#For DB dump and for logs data-bd
+#volumes:
+#  ./.data/db:
