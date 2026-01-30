@@ -17,7 +17,7 @@ sudo usermod -a -G docker vmadmin01
 sudo apt install ufw -y              #firewall
 sudo apt install git -y              #git
 
-### install and synchronize time
+## install and synchronize time
 #sudo timedatectl set-timezone Europe/Moscow
 #sudo systemctl enable chrony
 
