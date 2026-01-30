@@ -229,7 +229,7 @@ $user_data = $user_object->get_user_all_data();
 			// 'GROUP' CHAT
 
 			// Handling the client side part (browser) of the WebSocket connection (using JavaScript)
-			var conn = new WebSocket('ws://websockchat.ru/ws/'); // Create the Browser Web API WebSocket object i.e. Start the WebSocket connection!    // Initiate/Start the WebSocket connection in the browser. Check the browser's console.
+			var conn = new WebSocket('ws://localhost:8080'); // Create the Browser Web API WebSocket object i.e. Start the WebSocket connection!    // Initiate/Start the WebSocket connection in the browser. Check the browser's console.
 			// console.log(conn);
 
 

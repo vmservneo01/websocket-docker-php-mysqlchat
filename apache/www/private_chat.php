@@ -178,7 +178,7 @@ require('database/GroupChatMessageModel.php');
 
 
 			// Handling the client side part (browser) of the WebSocket connection (using JavaScript)
-			var conn = new WebSocket('ws://websockchat.ru/ws/?token=<?php echo $token; ?>'); // Create the Browser Web API WebSocket object i.e. Start the WebSocket connection!    // Initiate/Start the WebSocket connection in the browser. Check the browser's console.
+			var conn = new WebSocket('ws://localhost:8080?token=<?php echo $token; ?>'); // Create the Browser Web API WebSocket object i.e. Start the WebSocket connection!    // Initiate/Start the WebSocket connection in the browser. Check the browser's console.
 
 
 

@@ -1,61 +1,58 @@
 version: '3.9'
 
 services:
-    mysql:
-        volumes:
-            - "./.data/db:/var/lib/mysql"             #for regular download
-            - ./dump_db:/docker-entrypoint-initdb.d   #for dump bd
-        image: mysql
-        environment:
-            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-            MYSQL_DATABASE: ${MYSQL_DATABASE}
-#            MYSQL_USER: ${MYSQL_USER}
-#            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-        networks:
-          - php-net
+#    mysql:
+#        volumes:
+#            - "./.data/db:/var/lib/mysql"             #for regular download
+#            - $PWD/dump_db:/docker-entrypoint-initdb.d   #for dump bd
+#        image: mysql
+#        environment:
+#            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+#            MYSQL_DATABASE: ${MYSQL_DATABASE}
+##            MYSQL_USER: ${MYSQL_USER}
+##            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+#        networks:
+#           - php-net
 
     apache:
         volumes:
             - ./logs/apache:/var/www/${TMP_SITE}/log/apache
-#            - ./apache/www:/var/www/${TMP_SITE}/www
+#            - ./www:/var/www/${TMP_SITE}/www
         build:
            context: apache
            dockerfile: Dockerfile
         networks:
-          - php-net
+            - php-net
 
     nginx:
         build:
            context: nginx
            dockerfile: Dockerfile
         ports:
-            - 80:80
+#            - 80:80
+            - 443:443
         volumes:
             - ./logs/nginx/:/var/www/${TMP_SITE}/log/nginx
-            - ./nginx/static-content/vendor-front/:/var/www/${TMP_SITE}/www/vendor-front
+            - ./www/vendor-front/:/var/www/${TMP_SITE}/www/vendor-front
         networks:
-          - php-net
+            - php-net
         depends_on:
             - apache
+
+
+    elk:
+        image: willdurand/elk
+        ports:
+            - 81:80
+        volumes:
+            - ./elk/logstash:/etc/logstash
+            - ./elk/logstash/patterns:/opt/logstash/patterns
+        volumes_from:
+            - nginx
+        networks:
+            - php-net
 
 
 networks:
  php-net:
      driver: bridge
-
-
-#For DB dump and for logs data-bd
-#volumes:
-#  ./.data/db:
-
-
-#    elk:
-#        image: willdurand/elk
-#        ports:
-#            - 81:80
-#        volumes:
-#            - ./elk/logstash:/etc/logstash
-#            - ./elk/logstash/patterns:/opt/logstash/patterns
-#        volumes_from:
-#            - php
-#            - nginx

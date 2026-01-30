@@ -9,11 +9,12 @@ RUN mkdir -p /var/www/${TMP_SITE}/log/nginx \
 
 RUN apt update && apt install -y \
     nginx \
-    nano
+    nano \
+    openssl
 
 ADD nginx.conf /etc/nginx
 ADD websockchat.conf /etc/nginx/conf.d
-
+ADD create-ssl-cert.sh / 
 # Копируем исходники
 #ADD ./www/vendor-front /var/www/${TMP_SITE}/www/vendor-front
 
@@ -21,8 +22,10 @@ ADD websockchat.conf /etc/nginx/conf.d
 # Настраиваем права
 RUN chown -R www-data:www-data /var/www/${TMP_SITE}
 RUN chmod -R 775 /var/www/${TMP_SITE}
+RUN chmod +x /create-ssl-cert.sh
+RUN /create-ssl-cert.sh websockchat.ru 365
 
-
+#CMD ["/create-ssl-cert.sh","websockchat.ru","365"]
 CMD ["nginx"]
 
 EXPOSE 80
