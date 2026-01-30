@@ -1,6 +1,6 @@
 ## Real-time WebSocket Chat Application built with Docker-Compose
 ### Краткая информация
-Приложение написано на PHP(исходник приложения: [Real-time WebSocket Chat](https://github.com/AhmedYahyaE/realtime-websocket-php-chat-application),которое собирается автоматически с помощью Docker-compose
+Приложение написано на PHP(исходник приложения: [Real-time WebSocket Chat](https://github.com/AhmedYahyaE/realtime-websocket-php-chat-application)),которое собирается автоматически с помощью Docker-compose
 ### Основные заметки
 Приложение работает на двух веб-серверах apache и nginx.Apache забирает на себя всю осносвную нагрузку,nginx забирает статические файлы([vendor-front](/nginx/www/vendor-front)) и перенаправляет все соединения websocket yна веб-сервер apache([websockchat.conf](/nginx/websockchat.conf)).
 Также присутствует БД Mysql в которую попадает вся история диалогов в чатах. Еще присутствует ELK-стек который отображает логи nginx.Внутри контейнера с apache устанавливается supervisor для поднятия php-server, на котором работает websocket.
