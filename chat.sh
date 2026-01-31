@@ -4,7 +4,7 @@
 # Tested on Ubuntu 22.04, 24.04
 # Developed by vagrantservernode-01 in 2025
 #--------------------------------------------------------------------
-SERVERIP=""
+#SERVERIP=""
 
 
 ###install packages
@@ -29,7 +29,7 @@ git checkout test-master
 
 
 #host name
-sudo echo "$SERVERIP websockchat.ru" | sudo tee -a /etc/hosts
+#sudo echo "$SERVERIP websockchat.ru" | sudo tee -a /etc/hosts
 
 
 
