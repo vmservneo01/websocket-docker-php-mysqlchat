@@ -37,11 +37,11 @@ sudo echo "$SERVERIP websockchat.ru" | sudo tee -a /etc/hosts
 #sudo chmod +x /usr/local/bin/docker-compose 
 #sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose #access from anywhere
 #sudo rm -rf ./.data/db/*
-docker-compose build
-docker-compose up -d
-docker-compose logs nginx >> ./logs/docker-compose/logs_nginx
-docker-compose logs apache >> ./logs/docker-compose/logs_apache
-docker-compose logs apache >> ./logs/docker-compose/logs_mysql
+sudo docker-compose build
+sudo docker-compose up -d
+sudo docker-compose logs nginx >> ./logs/docker-compose/logs_nginx
+sudo docker-compose logs apache >> ./logs/docker-compose/logs_apache
+sudo docker-compose logs apache >> ./logs/docker-compose/logs_mysql
 
 ### setup firewall
 #sudo apt install ufw -y
