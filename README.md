@@ -2,9 +2,9 @@
 ### Краткая информация
 Приложение написано на PHP(исходник приложения: [Real-time WebSocket Chat](https://github.com/AhmedYahyaE/realtime-websocket-php-chat-application)),которое собирается автоматически с помощью Docker-compose
 ### Основные заметки
-Приложение работает на двух веб-серверах apache и nginx.Apache забирает на себя всю осносвную нагрузку,nginx забирает статические файлы([vendor-front](/nginx/www/vendor-front)) и перенаправляет все соединения websocket yна веб-сервер apache([websockchat.conf](/nginx/websockchat.conf)).
+Приложение работает на двух веб-серверах apache и nginx.Apache забирает на себя всю осносвную нагрузку,nginx забирает статические файлы([vendor-front](/nginx/www/vendor-front)) и перенаправляет все соединения websocket на веб-сервер apache([websockchat.conf](/nginx/websockchat.conf)).
 Также присутствует БД Mysql в которую попадает вся история диалогов в чатах. Еще присутствует ELK-стек который отображает логи nginx.Внутри контейнера с apache устанавливается supervisor для поднятия php-server, на котором работает websocket.
-Запустить приложение можно с помощью фала [chat.sh](chat.sh) указав в переменной SERVERIP ip виртуальной машины.
+Запустить приложение можно с помощью файла [chat.sh](chat.sh) указав в переменной SERVERIP ip виртуальной машины.
 ### Краткое описание/Изменения(на всякий случай)
 1. [vhosts](apache/vhosts) - все основные конфиги для apache(самое важное [websockchat.ru.conf](apache/vhosts/websockchat.ru))
 2. [www](apache/www) - здесь находится само приложение.Напоминание: чтобы чат работал правильно нужно указать свое доменное имя(на котором работают сервера) в файлах [private_chat.php](apache/www/private_chat.php) и [group_chat.php](apache/www/group_chat.php) (здесь:var conn = new WebSocket('ws://(свой домен)/ws/)

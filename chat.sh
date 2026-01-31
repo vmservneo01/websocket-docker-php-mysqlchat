@@ -25,6 +25,7 @@ sudo apt install git -y              #git
 ###git clone
 git clone https://github.com/vmservneo01/websocket-docker-php-mysqlchat.git
 cd  websocket-docker-php-mysqlchat
+git checkout test-master
 
 
 #host name
@@ -41,7 +42,7 @@ sudo docker-compose build
 sudo docker-compose up -d
 sudo docker-compose logs nginx >> ./logs/docker-compose/logs_nginx
 sudo docker-compose logs apache >> ./logs/docker-compose/logs_apache
-sudo docker-compose logs apache >> ./logs/docker-compose/logs_mysql
+sudo docker-compose logs mysql >> ./logs/docker-compose/logs_mysql
 
 ### setup firewall
 #sudo apt install ufw -y
