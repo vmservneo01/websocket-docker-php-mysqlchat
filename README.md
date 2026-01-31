@@ -9,5 +9,6 @@
 1. [vhosts](apache/vhosts) - все основные конфиги для apache(самое важное [websockchat.ru.conf](apache/vhosts/websockchat.ru))
 2. [www](apache/www) - здесь находится само приложение.Напоминание: чтобы чат работал правильно нужно указать свое доменное имя(на котором работают сервера) в файлах [private_chat.php](apache/www/private_chat.php) и [group_chat.php](apache/www/group_chat.php) (здесь:var conn = new WebSocket('ws://(свой домен)/ws/)
 3. [dump_db](apache/dump_db) - внутри папки находится файл, который автоматически дампится в контейнер mysql, для того чтобы создать таблицу для записей из чатов(chat_application)
-4. [.env](.env) - здесь находится пароль от БД и сама база.Используется в [docker-compose.yml](docker-compose.yml) в создании контейнера mysql(environment)
-
+4. [dump_db](apache/dump_db) - отмечу еще один важный момент,eсли добавлять volume вместе с docker-entrypoint база данных не будет создана,потому что при дампе баз данных подключается этот volume и затирает все инфу,которую пытается дампить docker-entrypoint, поэтому используем отдельно друг от друга 
+5. [.env](.env) - здесь находится пароль от БД и сама база.Используется в [docker-compose.yml](docker-compose.yml) в создании контейнера mysql(environment)
+6. [websockchat.conf](nginx/websockchat.conf) - в этом конфиге настраиваются соединения для корректной работы приложения.В качестве уточнения отмечаю,что в этом файле встречается блок location /vendor-front в котором указывается путь к статическому контенту(он находится уже внутри контейнера(как и сам файл websockchat.conf)) и также наужно указать в docker-compose.yml(в nginx) путь к статическом контенту [vendor-front](nginx/www/vendor-front)
