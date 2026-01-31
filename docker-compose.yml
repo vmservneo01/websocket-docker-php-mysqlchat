@@ -33,7 +33,7 @@ services:
             - 443:443
         volumes:
             - ./logs/nginx/:/var/www/${TMP_SITE}/log/nginx
-            - ./www/vendor-front/:/var/www/${TMP_SITE}/www/vendor-front
+            - ./nginx/www/vendor-front/:/var/www/${TMP_SITE}/www/vendor-front
         networks:
             - php-net
         depends_on:
