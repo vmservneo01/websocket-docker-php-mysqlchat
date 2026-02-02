@@ -11,6 +11,7 @@ RUN mkdir -p /var/www/${TMP_SITE}/log/nginx \
 RUN apt update && apt install -y \
     nginx \
     nano \
+    apache2-utils \
     openssl &&\
     apt-get autoremove -y && \
     apt-get clean
@@ -29,9 +30,9 @@ RUN chmod -R 775 /var/www/${TMP_SITE}
 RUN chmod +x /scripts/*.sh
 RUN /scripts/create-ssl-cert-for-nginx.sh websockchat.ru 365
 RUN /scripts/create-ssl-cert-for-elk.sh elk.digitalagro.ru  365
-
+RUN /scripts/htpasswd_entrypoint.sh
 #CMD ["/create-ssl-cert.sh","websockchat.ru","365"]
-CMD ["/bin/bash", "/scripts/htpasswd_entrypoint.sh"]
+CMD ["nginx"]
 
 #EXPOSE 80
 EXPOSE 443

@@ -7,4 +7,3 @@ if [ -f $HTPASSWD_FILE ] ; then
 fi
 htpasswd -c -b ${HTPASSWD_FILE} ${KIBANA_USERNAME} ${KIBANA_PASSWORD}
 
-nginx -g "daemon off;" #& Starting nginx foreground mode
