@@ -31,6 +31,9 @@ services:
         ports:
 #            - 80:80
             - 443:443
+        environment:
+             KIBANA_USERNAME: ${KIBANA_USERNAME}
+             KIBANA_PASSWORD: ${KIBANA_PASSWORD}
         volumes:
             - ./logs/nginx/:/var/www/${TMP_SITE}/log/nginx
             - ./nginx/www/vendor-front/:/var/www/${TMP_SITE}/www/vendor-front
@@ -38,17 +41,18 @@ services:
             - php-net
         depends_on:
             - apache
-
+            - elk
 
     elk:
         image: willdurand/elk
-        ports:
-            - 81:80
+#        ports:
+#            - 81:80
         volumes:
             - ./elk/logstash:/etc/logstash
             - ./elk/logstash/patterns:/opt/logstash/patterns
-        volumes_from:
-            - nginx
+            - ./logs/nginx/:/logs_nginx
+#        volumes_from:
+#            - nginx
         networks:
             - php-net
 
