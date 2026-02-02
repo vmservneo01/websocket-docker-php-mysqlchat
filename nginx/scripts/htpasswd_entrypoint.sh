@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Create Kibana username and password into htpasswd file
 KIBANA_USERNAME=${KIBANA_USERNAME:-admin}
 KIBANA_PASSWORD=${KIBANA_PASSWORD:-admin}
@@ -7,3 +9,4 @@ if [ -f $HTPASSWD_FILE ] ; then
 fi
 htpasswd -c -b ${HTPASSWD_FILE} ${KIBANA_USERNAME} ${KIBANA_PASSWORD}
 
+nginx -g "daemon off;"  #Startin nginx foreground mode

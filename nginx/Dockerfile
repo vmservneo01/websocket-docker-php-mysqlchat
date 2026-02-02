@@ -30,9 +30,10 @@ RUN chmod -R 775 /var/www/${TMP_SITE}
 RUN chmod +x /scripts/*.sh
 RUN /scripts/create-ssl-cert-for-nginx.sh websockchat.ru 365
 RUN /scripts/create-ssl-cert-for-elk.sh elk.digitalagro.ru  365
-RUN /scripts/htpasswd_entrypoint.sh
+#RUN /scripts/htpasswd_entrypoint.sh
+
 #CMD ["/create-ssl-cert.sh","websockchat.ru","365"]
-CMD ["nginx"]
+CMD ["/bin/bash","/scripts/htpasswd_entrypoint.sh"]
 
 #EXPOSE 80
 EXPOSE 443
