@@ -25,7 +25,7 @@ sudo apt install git -y              #git
 ###git clone
 git clone https://github.com/vmservneo01/websocket-docker-php-mysqlchat.git
 cd  websocket-docker-php-mysqlchat
-git checkout test-master
+#git checkout test-master
 
 
 #host name
