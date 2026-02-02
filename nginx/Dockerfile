@@ -16,9 +16,9 @@ RUN apt update && apt install -y \
     apt-get clean
 
 
-ADD nginx.conf ssl-params.conf /etc/nginx
+ADD nginx.conf ssl-params.conf /etc/nginx/
 ADD websockchat.conf /etc/nginx/conf.d
-ADD scripts/* /scripts  
+ADD scripts/* /scripts/
 # Копируем исходники
 #ADD ./www/vendor-front /var/www/${TMP_SITE}/www/vendor-front
 
