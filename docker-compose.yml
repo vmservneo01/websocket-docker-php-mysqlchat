@@ -49,7 +49,7 @@ networks:
 #  ./.data/db:
 
 
-#    elk:
+##    elk:
 #        image: willdurand/elk
 #        ports:
 #            - 81:80
